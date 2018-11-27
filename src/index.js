@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+//import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import * as firebase from 'firebase'
-import initFirebase from './firebaseConfig'
+import initFirebase from './firebase/firebaseConfig.js'
+
+import Root from './App/Root'
+import configureStore from './store/configureStore'
+
 initFirebase()
+let store = configureStore()
+
 /*
 var config = {
     apiKey: "AIzaSyCOkYUqn_2bReOMwgcCUmQZdLrGUO8N070",
@@ -19,5 +24,8 @@ var config = {
 firebase.initializeApp(config);
 */
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+ReactDOM.render(
+  <Root store={store} />, 
+  document.getElementById('root')
+);
+//registerServiceWorker();
